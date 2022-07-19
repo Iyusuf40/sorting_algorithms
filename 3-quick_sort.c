@@ -12,8 +12,11 @@ void real_sorter(int arr[], int low, int high, size_t size)
 	int high_1, high_2, low_1, low_2;
 
 	last_memb = arr[high];
-	index = 0;
+	index = low;
 	current = high;
+
+	if (low >= high)
+		return;
 
 	while (index < high)
 	{
@@ -34,20 +37,14 @@ void real_sorter(int arr[], int low, int high, size_t size)
 		}
 		index++;
 	}
-	/*printf("%d -- ", last_memb);*/
-	print_array(arr, size);
-	if (index == high && index > 0)
-		index = (low + high) / 2;
 
+	print_array(arr, size);
 	low_1 = low;
 	high_1 = current - 1;
 	low_2 = current + 1;
 	high_2 = high;
-
-	if (low_1 < high_1)
-		real_sorter(arr, low_1, high_1, size);
-	if (low_2 < high_2)
-		real_sorter(arr, low_2, high_2, size);
+	real_sorter(arr, low_1, high_1, size);
+	real_sorter(arr, low_2, high_2, size);
 }
 
 /**
